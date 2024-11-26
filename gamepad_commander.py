@@ -5,11 +5,7 @@ import argparse
 import subprocess
 
 from screenshot import take_screenshot
-
-
-def mouse_click_left():
-    command = ['xdotool', 'click', '1']
-    result = subprocess.run(command)
+from desktop_util import get_mouse_location, mouse_click
 
 
 # Pygameの初期化
@@ -84,9 +80,11 @@ def main():
         if button_states_one_shot[1] == 1:
             print('B button')
             print(f'buttons: {buttons}')
-            mouse_click_left()
+            mouse_click(1)
         if button_states_one_shot[2] == 1:
             print('X button')
+            result = get_mouse_location()
+            print(f' mouse at: {result}')
         if button_states_one_shot[3] == 1:
             print('Y button')
 
